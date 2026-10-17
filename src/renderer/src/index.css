@@ -1,0 +1,185 @@
+@import 'tailwindcss';
+
+/**
+ * Token mau cua app.
+ *
+ * Mau toi khong phai la mau sang bi lat nguoc: moi gia tri deu duoc chon
+ * rieng cho nen cua che do do, va bo mau phan loai da qua kiem dinh ve do
+ * tach bach voi nguoi mu mau o ca hai che do.
+ *
+ * Gia tri che do toi duoc khai bao hai lan, mot lan theo cai dat he dieu
+ * hanh va mot lan theo cong tac trong app, de lua chon cua nguoi dung
+ * luon thang cai dat he thong theo ca hai chieu.
+ */
+
+:root {
+  color-scheme: light;
+
+  --surface-0: #f2f2f0;
+  --surface-1: #fcfcfb;
+  --surface-2: #f6f6f4;
+  --surface-raised: #ffffff;
+
+  --border-subtle: #e2e1dd;
+  --border-strong: #cfcdc7;
+
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #7c7a74;
+
+  --accent: #2a78d6;
+  --accent-contrast: #ffffff;
+
+  --good: #1b7f4b;
+  --warning: #9a6700;
+  --critical: #b3261e;
+
+  --heat-track: #e6e5e1;
+  --heat-fill: #2a78d6;
+
+  --shadow-card: 0 1px 2px rgb(11 11 11 / 6%), 0 4px 12px rgb(11 11 11 / 4%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme='light'])) {
+    color-scheme: dark;
+
+    --surface-0: #121211;
+    --surface-1: #1a1a19;
+    --surface-2: #232321;
+    --surface-raised: #262625;
+
+    --border-subtle: #302f2d;
+    --border-strong: #45443f;
+
+    --text-primary: #f0efec;
+    --text-secondary: #c3c2b7;
+    --text-muted: #8e8d84;
+
+    --accent: #3987e5;
+    --accent-contrast: #0b0b0b;
+
+    --good: #3fa06a;
+    --warning: #c98500;
+    --critical: #e66767;
+
+    --heat-track: #2d2c2a;
+    --heat-fill: #3987e5;
+
+    --shadow-card: 0 1px 2px rgb(0 0 0 / 30%), 0 4px 14px rgb(0 0 0 / 22%);
+  }
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --surface-0: #121211;
+  --surface-1: #1a1a19;
+  --surface-2: #232321;
+  --surface-raised: #262625;
+
+  --border-subtle: #302f2d;
+  --border-strong: #45443f;
+
+  --text-primary: #f0efec;
+  --text-secondary: #c3c2b7;
+  --text-muted: #8e8d84;
+
+  --accent: #3987e5;
+  --accent-contrast: #0b0b0b;
+
+  --good: #3fa06a;
+  --warning: #c98500;
+  --critical: #e66767;
+
+  --heat-track: #2d2c2a;
+  --heat-fill: #3987e5;
+
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 30%), 0 4px 14px rgb(0 0 0 / 22%);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--surface-0);
+  color: var(--text-primary);
+  font-family:
+    'Segoe UI', -apple-system, BlinkMacSystemFont, 'Inter', 'Noto Sans', system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Khong cho chon chu o phan khung suon, de keo tha va bam nhanh khong
+   vo tinh boi den ca mang van ban. Noi dung bai viet van chon duoc. */
+.no-select {
+  user-select: none;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border: 2px solid var(--surface-0);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    opacity: 0.55;
+    transform: scale(0.85);
+  }
+  70% {
+    opacity: 0;
+    transform: scale(1.6);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.6);
+  }
+}
+
+.scanning-ring::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 2px solid var(--accent);
+  animation: pulse-ring 1.4s ease-out infinite;
+}

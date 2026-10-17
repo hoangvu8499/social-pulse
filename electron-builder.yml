@@ -1,0 +1,40 @@
+appId: com.local.socialpulse
+productName: Social Pulse
+copyright: Copyright (c) 2026
+
+directories:
+  buildResources: resources
+  output: release
+
+files:
+  - out/**/*
+  - package.json
+  - '!**/*.map'
+  - '!**/*.ts'
+
+asar: true
+
+win:
+  target:
+    - target: nsis
+      arch:
+        - x64
+  artifactName: ${productName}-${version}-${arch}.${ext}
+
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  perMachine: false
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: Social Pulse
+
+mac:
+  target:
+    - dmg
+  category: public.app-category.news
+
+linux:
+  target:
+    - AppImage
+  category: Network
